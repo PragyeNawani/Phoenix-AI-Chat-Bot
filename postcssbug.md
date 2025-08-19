@@ -1,0 +1,295 @@
+Valid Layer Names
+@layer base { ... }
+@layer components { ... }
+@layer utilities { ... }
+/*
+Register Component
+*/
+@layer components {
+  /**
+  Text field
+  */
+  .text-field-wrapper {
+    @apply relative;
+  }
+  .text-field {
+    @apply ring-4
+     ring-inset
+     ring-light-outline
+     dark:ring-dark-outline
+     bg-inherit
+     text-light-onSurface
+     dark:text-dark-onSurface
+     caret-light-primary
+     dark:caret-dark-primary
+     h-14
+     px-4
+     rounded-extraSmall
+     transition-shadow
+     duration-short3
+     ease-linear
+   hover:ring-light-onSurface
+   hover:dark:ring-dark-onSurface 
+     focus:ring-2
+   focus:ring-light-primary
+   focus:dark:ring-dark-primary;
+  }
+  .text-field::placeholder {
+    @apply opacity-0
+    transition-opacity;
+  }
+  .text-field:focus::placeholder {
+    @apply opacity-100;
+  }
+  .label-text {
+    @apply absolute
+    text-labelLarge
+    top-[18px]
+    left-2
+    text-light-onSurfaceVariant
+    dark:text-dark-onSurfaceVariant
+    bg-light-background
+    dark:bg-dark-background  
+    px-2
+    origin-[center_left]
+    pointer-events-none
+    select-none
+    transition-[color,transform]
+    duration-short4
+    ease-standard;
+  }
+  .text-field-wrapper:hover .label-text {
+    @apply text-light-onSurface
+    dark:text-dark-onSurface;
+  }
+  .text-field-wrapper:focus-within .label-text,
+  .text-field-wrapper:has(.text-field:not(:placeholder-shown)) .label-text {
+    @apply translate-x-0.5
+    -translate-y-7
+    scale-[0.85];
+  }
+  .text-field-wrapper:focus-within .label-text {
+    @apply text-light-primary
+    dark:text-dark-primary;
+  }
+  .text-field-wrapper .helper-text {
+    @apply text-light-onSurfaceVariant
+    dark:text-dark-onSurfaceVariant
+    text-bodySmall
+    px-4
+    pt-1;
+  }
+  /**
+  Button
+  */
+  .btn {
+    @apply h-10
+    flex
+    justify-center
+    items-center
+    rounded-full
+    text-labelLarge
+    px-4
+    transition-shadow
+    duration-short3
+    ease-standard
+    hover:shadow-elevation1
+    focus:shadow-none;
+  }
+  .btn.filled.primary {
+    --state-layer-bg: theme("colors.light.onPrimary");
+    @apply bg-light-primary
+    dark:bg-dark-primary
+    text-light-onPrimary
+    dark:text-dark-onPrimary;
+  }
+  @media (prefers-color-scheme: dark) {
+    .btn.filled.primary {
+      --state-layer-bg: theme("colors.dark.onPrimary");
+    }
+  }
+  .btn.filled:disabled {
+    @apply bg-light-onSurface/[0.12]
+    dark:bg-dark-onSurface/[0.12]
+    text-light-onSurface/[0.38]
+    dark:text-dark-onSurface/[0.38]
+    pointer-events-none;
+  }
+  /**
+  State-layer
+  */
+  :has(> .state-layer) {
+    @apply relative
+    overflow-hidden
+    isolate;
+  }
+  .state-layer {
+    @apply absolute
+    inset-0
+    bg-[--state-layer-bg]
+    opacity-0
+    transition-opacity
+    duration-short3
+    ease-standard
+    pointer-events-none
+    select-none
+    -z-10;
+  }
+  :has(> .state-layer):hover > .state-layer {
+    @apply opacity-[0.08];
+  }
+  :has(> .state-layer):where(:focus, :focus-visible, :focus-within)
+    > .state-layer {
+    @apply opacity-[0.1];
+  }
+  .link {
+    @apply transition-colors
+    duration-short3
+    ease-standard
+    hover:text-light-primary
+    hover:dark:text-dark-primary
+    hover:underline;
+  }
+}
+
+text-field-wrapper {
+    @apply relative;
+  }
+  .text-field {
+    @apply ring-1
+     ring-inset
+     ring-light-outline
+     dark:ring-dark-outline
+     bg-inherit
+     text-light-onSurface
+     dark:text-dark-onSurface
+     caret-light-primary
+     dark:caret-dark-primary
+     h-14
+     px-4
+     rounded-extraSmall
+     transition-shadow
+     duration-short3
+     ease-linear
+   hover:ring-light-onSurface
+   hover:dark:ring-dark-onSurface 
+     focus:ring-2
+   focus:ring-light-primary
+   focus:dark:ring-dark-primary;
+  }
+  .text-field::placeholder {
+    @apply opacity-0
+    transition-opacity;
+  }
+  .text-field:focus::placeholder {
+    @apply opacity-100;
+  }
+  .label-text {
+    @apply absolute
+    text-labelLarge
+    top-[18px]
+    left-2
+    text-light-onSurfaceVariant
+    dark:text-dark-onSurfaceVariant
+    bg-light-background
+    dark:bg-dark-background  
+    px-2
+    origin-[center_left]
+    pointer-events-none
+    select-none
+    transition-[color,transform]
+    duration-short4
+    ease-standard;
+  }
+  .text-field-wrapper:hover .label-text {
+    @apply text-light-onSurface
+    dark:text-dark-onSurface;
+  }
+  .text-field-wrapper:focus-within .label-text,
+  .text-field-wrapper:has(.text-field:not(:placeholder-shown)) .label-text {
+    @apply translate-x-0.5
+    -translate-y-7
+    scale-[0.85];
+  }
+  .text-field-wrapper:focus-within .label-text {
+    @apply text-light-primary
+    dark:text-dark-primary;
+  }
+  .text-field-wrapper .helper-text {
+    @apply text-light-onSurfaceVariant
+    dark:text-dark-onSurfaceVariant
+    text-bodySmall
+    px-4
+    pt-1;
+  }
+  /**
+  Button
+  */
+  .btn {
+    @apply h-10
+    flex
+    justify-center
+    items-center
+    rounded-full
+    text-labelLarge
+    px-4
+    transition-shadow
+    duration-short3
+    ease-standard
+    hover:shadow-elevation1
+    focus:shadow-none;
+  }
+  .btn.filled.primary {
+    --state-layer-bg: theme("colors.light.onPrimary");
+    @apply bg-light-primary
+    dark:bg-dark-primary
+    text-light-onPrimary
+    dark:text-dark-onPrimary;
+  }
+  @media (prefers-color-scheme: dark) {
+    .btn.filled.primary {
+      --state-layer-bg: theme("colors.dark.onPrimary");
+    }
+  }
+  .btn.filled:disabled {
+    @apply bg-light-onSurface/[0.12]
+    dark:bg-dark-onSurface/[0.12]
+    text-light-onSurface/[0.38]
+    dark:text-dark-onSurface/[0.38]
+    pointer-events-none;
+  }
+  /**
+  State-layer
+  */
+  :has(> .state-layer) {
+    @apply relative
+    overflow-hidden
+    isolate;
+  }
+  .state-layer {
+    @apply absolute
+    inset-0
+    bg-[--state-layer-bg]
+    opacity-0
+    transition-opacity
+    duration-short3
+    ease-standard
+    pointer-events-none
+    select-none
+    -z-10;
+  }
+  :has(> .state-layer):hover > .state-layer {
+    @apply opacity-[0.08];
+  }
+  :has(> .state-layer):where(:focus, :focus-visible, :focus-within)
+    > .state-layer {
+    @apply opacity-[0.1];
+  }
+  .link {
+    @apply transition-colors
+    duration-short3
+    ease-standard
+    hover:text-light-primary
+    hover:dark:text-dark-primary
+    hover:underline;
+  }

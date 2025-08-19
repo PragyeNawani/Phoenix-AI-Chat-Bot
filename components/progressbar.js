@@ -1,0 +1,41 @@
+import React from 'react'
+import { motion } from 'framer-motion'
+const CircularProgress = () => {
+  return (
+    <div role='progressbar' className='circular-progress small'>
+        
+    </div>
+  )
+}
+const LinearProgress = ({classes=''}) => { 
+  const progressbarvariant = {
+    start: {scaleY: 0},
+    end:{
+      scaleY: 1,
+      transition: {
+        when: `beforeChildren`,
+        duration: 0.2,
+        ease: 'easeOut',
+        delay: 0.5
+      }
+    },
+    exit:{
+      scaleY: 0,
+      transition:{
+        duration: 0.1,
+        ease: 'easeOut',
+      }
+    }
+  }
+  const activebarvariant = {
+    start: {translateX: '-100%'},
+    end: {translateX: '100%'}
+  }
+  return(
+    <motion.div role='progressbar' variants={progressbarvariant} initial='start' animate='end' exit='exit' className={`linear-progress ${classes}`}>
+      <motion.div role='activeindicator' variants={activebarvariant} transition={{repeat: Infinity, duration:1.5, ease:[0.2,0, 0, 1]}} className='active-indicator'></motion.div>
+    </motion.div>
+  )
+ }
+
+export {CircularProgress, LinearProgress}
